@@ -6,7 +6,7 @@
 ARG BASE=grafana/k6:latest
 FROM ${BASE}
 USER root
-RUN apk add --no-cache bash iperf3 jq coreutils
+RUN apk upgrade --no-cache && apk add --no-cache bash iperf3 jq coreutils
 COPY scripts/k6-load.js scripts/run-k6.sh scripts/run-iperf.sh /opt/netbench/
 RUN chmod 0555 /opt/netbench/*.sh && ln -s /opt/netbench/run-k6.sh /usr/local/bin/run-k6.sh \
  && ln -s /opt/netbench/run-iperf.sh /usr/local/bin/run-iperf.sh

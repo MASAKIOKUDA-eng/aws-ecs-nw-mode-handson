@@ -30,6 +30,9 @@ while IFS=$'\t' read -r task_id ci_arn az eni_ip web_bind iperf_bind; do
     ip="$(aws ec2 describe-instances --instance-ids "$instance_id" \
       --query 'Reservations[0].Instances[0].PrivateIpAddress' --output text)"
     web_port="$web_bind"; iperf_port="$iperf_bind"        # bridge / host
+    # host mode may report no networkBindings: the container port is the host port
+    [[ "$web_port" == "null" ]] && web_port=8080
+    [[ "$iperf_port" == "null" ]] && iperf_port=5201
   fi
   printf '%s\t%s\t%s\t%s\t%s\t%s\n' "$task_id" "$ip" "$web_port" "$iperf_port" "$instance_id" "$az"
 done < <(jq -r '
