@@ -101,6 +101,7 @@ Resources:
           Essential: false
           Command: ["iperf3", "-s", "-p", "5201"]
           ReadonlyRootFilesystem: true
+          MountPoints: [{ SourceVolume: web-tmp, ContainerPath: /tmp }]   # iperf3 writes temp files to /tmp
           PortMappings: [{ ContainerPort: 5201, Protocol: tcp }]
           LinuxParameters: { InitProcessEnabled: true, Capabilities: { Drop: [ALL] } }
           LogConfiguration:
@@ -146,6 +147,7 @@ Resources:
           Essential: false
           Command: ["iperf3", "-s", "-p", "5201"]
           ReadonlyRootFilesystem: true
+          MountPoints: [{ SourceVolume: web-tmp, ContainerPath: /tmp }]   # iperf3 writes temp files to /tmp
           PortMappings: [{ ContainerPort: 5201, Protocol: tcp }]
           LinuxParameters: { InitProcessEnabled: true, Capabilities: { Drop: [ALL] } }
           LogConfiguration:
@@ -189,6 +191,7 @@ Resources:
           Essential: false
           Command: ["iperf3", "-s", "-p", "5201"]
           ReadonlyRootFilesystem: true
+          MountPoints: [{ SourceVolume: web-tmp, ContainerPath: /tmp }]   # iperf3 writes temp files to /tmp
           PortMappings: [{ ContainerPort: 5201, HostPort: 0, Protocol: tcp }]
           LinuxParameters: { InitProcessEnabled: true, Capabilities: { Drop: [ALL] } }
           LogConfiguration:
@@ -235,6 +238,7 @@ Resources:
           Essential: false
           Command: ["iperf3", "-s", "-p", "5201"]
           ReadonlyRootFilesystem: true
+          MountPoints: [{ SourceVolume: web-tmp, ContainerPath: /tmp }]   # iperf3 writes temp files to /tmp
           PortMappings: [{ ContainerPort: 5201, HostPort: 5201, Protocol: tcp }]
           LinuxParameters: { InitProcessEnabled: true, Capabilities: { Drop: [ALL] } }
           LogConfiguration:
